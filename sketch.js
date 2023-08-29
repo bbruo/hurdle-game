@@ -110,6 +110,20 @@ function resetGame() {
   score = 0;
   isGameOver = false;
   resetEnabled = false;
+  player.reset(); // Add a reset method in the Player class to reset position and speed
+
+  // Clear the canvas container
+  let canvasContainer = select('#canvas-container');
+  canvasContainer.html('');
+
+  // Recreate the canvas with adjusted size
+  let canvas = createCanvas(600, min(400, windowHeight));
+  canvas.parent(canvasContainer);
+
+  // Reset other game logic as needed
+  hurdles = [];
+  score = 0;
+  
    for (let hurdle of hurdles) {
     hurdle.isVisible = true;
   }
