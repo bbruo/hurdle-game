@@ -59,11 +59,12 @@ function draw() {
       }
     }
 
-    let hurdleSpawnRate = map(score, 0, 100, -120, 30); // Adjust the range as needed
-    if (frameCount % hurdleSpawnRate === 0) {
-      hurdles.push(new Hurdle());
-      
-    }
+    let minHurdleSpawnRate = 5; // Set a minimum value for hurdle spawn rate
+let hurdleSpawnRate = map(player.speedIncrease, 0, 30, 120, minHurdleSpawnRate);
+if (frameCount % hurdleSpawnRate === 0) {
+  hurdles.push(new Hurdle());
+}
+
 
   fill(0,105,52);
     noStroke();
