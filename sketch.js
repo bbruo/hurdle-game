@@ -23,7 +23,7 @@ function preload() {
 }
 
 function setup() {
-  let canvasContainer = select('#canvas-container');
+    let canvasContainer = select('#canvas-container');
   let canvas = createCanvas(min(400, windowWidth), min(400, windowHeight));
   canvas.parent(canvasContainer);
   player = new Player();
@@ -81,7 +81,7 @@ function draw() {
     currentBackground = (currentBackground + 1) % backgroundImages.length;
   }
 }
-
+ 
 function touchStarted() {
   if (isGameOver && resetEnabled) {
     resetGame();
@@ -110,26 +110,14 @@ function resetGame() {
   score = 0;
   isGameOver = false;
   resetEnabled = false;
-  player.reset(); // Add a reset method in the Player class to reset position and speed
-
-  // Clear the canvas container
-  let canvasContainer = select('#canvas-container');
-  canvasContainer.html('');
-
-  // Recreate the canvas with adjusted size
-  let canvas = createCanvas(600, min(400, windowHeight));
-  canvas.parent(canvasContainer);
-
-  // Reset other game logic as needed
-  hurdles = [];
-  score = 0;
+  
   
    for (let hurdle of hurdles) {
     hurdle.isVisible = true;
   }
   loop();
   // Reset the canvas size and reposition the text
-  resizeCanvas(600, 400);
+  resizeCanvas(400, 400);
   textAlign(LEFT, TOP);
   textFont("Arial");
 }
