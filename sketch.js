@@ -24,7 +24,7 @@ function preload() {
 
 function setup() {
   let canvasContainer = select('#canvas-container');
-  let canvas = createCanvas(min(600, windowWidth), min(400, windowHeight));
+  let canvas = createCanvas(min(400, windowWidth), min(400, windowHeight));
   canvas.parent(canvasContainer);
   player = new Player();
 }
