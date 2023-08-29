@@ -23,8 +23,9 @@ function preload() {
 }
 
 function setup() {
-  let canvas = createCanvas(600, 400);
-  canvas.parent('canvas-container'); // Attach the canvas to the container
+  let canvasContainer = select('#canvas-container');
+  let canvas = createCanvas(min(600, windowWidth), min(400, windowHeight));
+  canvas.parent(canvasContainer);
   player = new Player();
 }
   
