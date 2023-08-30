@@ -59,14 +59,31 @@ function draw() {
       }
     }
 
-   let minHurdleSpawnRate = 20; // Set a minimum value for hurdle spawn rate
-let hurdleSpawnRate = max(map(player.speedIncrease, 0, 30, 120, minHurdleSpawnRate), minHurdleSpawnRate);
-if (frameCount % hurdleSpawnRate === 0) {
-  hurdles.push(new Hurdle());
-}
+//    let minHurdleSpawnRate = 20; // Set a minimum value for hurdle spawn rate
+//let hurdleSpawnRate = max(map(player.speedIncrease, 0, 30, 120, minHurdleSpawnRate), minHurdleSpawnRate);
+    
+   //  if (score >= 10) {
+   //   hurdleSpawnRate = map(player.speedIncrease, 0, 30, 60, minHurdleSpawnRate);
+   // } else {
+    //  hurdleSpawnRate = map(player.speedIncrease, 0, 30, 120, minHurdleSpawnRate);
+  //  }
+    
+     let baseSpawnRate = 68; // Initial spawn rate
+    let maxSpawnRate = 40;   // Maximum spawn rate
+    let scoreThreshold = 5; // Score after which to start increasing spawn rate
 
+    let spawnRateRange = baseSpawnRate - maxSpawnRate;
+    let normalizedScore = constrain(score - scoreThreshold, 0, spawnRateRange);
+    let adjustedSpawnRate = baseSpawnRate - normalizedScore;
+    
+    if (frameCount % adjustedSpawnRate === 0) {
+      hurdles.push(new Hurdle());
+    }
+    
+//if (frameCount % hurdleSpawnRate === 0) {
+//  hurdles.push(new Hurdle());
 
-
+ 
   fill(0,105,52);
     noStroke();
   textAlign(LEFT, TOP);
@@ -231,6 +248,7 @@ class Hurdle {
 
     update() { 
     this.speed = map(score, 0, 100, 5, 8) + (0.09 * score); // Update speed
+      
     this.x -= this.speed;
   }
 
